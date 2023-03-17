@@ -40,6 +40,9 @@
 
   @media only screen and (max-width: 720px) {
     .HighlightInput {
+      padding-left: 20px;
+    }
+    .HighlightInput input, .HighlightInput div {
       font-size: medium;
     }
   }
