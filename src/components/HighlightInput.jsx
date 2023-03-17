@@ -5,11 +5,11 @@ function HighlightInput() {
   const inputRef = useRef(null);
 
   const colors = [
-    "#73c7ff",
+    "#44e2f798",
     "#f1ff73",
-    "#ff737f",
+    "#f8567fcc",
     "#73ff9d",
-    "#6c757d"
+    "#6c757d7a"
   ]
 
   const wordsAndColors = [
@@ -41,7 +41,8 @@ function HighlightInput() {
     { word: `aceptables condiciones`, color: colors[3]},
 
     //Gris
-    { word: `mg|miligramos`, color: colors[4]},
+    { word: `\\b((0?[1-9]|[12]\\d|3[01])[\\/\\.-](0?[1-9]|1[0-2])[\\/\\.-](\\d{4}|\\d{2}))(?=\\W|$)`, color: colors[4]}
+    //fechas
   ];
 
   const handleHighlight = () => {
