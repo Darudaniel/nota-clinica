@@ -17,6 +17,8 @@
   
   .HighlightInput button {
     width: 25%;
+    display: flex;
+    justify-content: center;
     background-color: #73a4ff;
     color: #fff;
     padding: 12px 24px;
@@ -34,5 +36,11 @@
   
   .HighlightInput button:focus {
     outline: none;
+  }
+
+  @media only screen and (max-width: 720px) {
+    .HighlightInput {
+      font-size: medium;
+    }
   }
   
