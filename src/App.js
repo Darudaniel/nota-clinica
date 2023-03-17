@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1 className='title'>Nota Clinica</h1>
+        <h1 className='title'>Nota Clínica</h1>
       </header>
         <HighlightInput />
 
