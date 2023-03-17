@@ -58,7 +58,7 @@ function HighlightInput() {
           `<span style="background-color:${color}">${match}</span>`
       );
     });
-
+    
     inputElement.innerHTML = inputValue;
     inputElement.focus();
   };
