@@ -23,22 +23,44 @@ function HighlightInput() {
     { word: `an[aá]lisis`, color: colors[0]},
     { word: `antecedente`, color: colors[0]},
     { word: `diagn[oó]stico(s)?|dx`, color: colors[0]},
-    { word: `imagen|im[aá]genes`, color: colors[0]},
+    { word: `im[aá]genes|imagen`, color: colors[0]},
+    { word: `medicamento`, color: colors[0]},  
+    { word: `laboratorio`, color: colors[0]},  
     { word: `objetivo`, color: colors[0] },
     { word: `paracl[ií]nico`, color: colors[0]},
     { word: `plan`, color: colors[0]},
-    { word: `subjetivo|s:`, color: colors[0]},
+    { word: `s:|s/|s/:|subjetivo`, color: colors[0]},
     { word: `tratamiento(s)?|tto`, color: colors[0]},
     
     
     //Amarillo
     { word: `hba1c|hemoglobina glicada|hemoglobina glicosilada`, color: colors[1]},
+    { word: `tsh`, color: colors[1]},    
     
     //Pink
-    { word: `hb|hemoglobina`, color: colors[2]},
+    { word: `bun`, color: colors[2]},
+    { word: `ca |ca:|calcio`, color: colors[2]},
+    { word: `cl |cl:|cloro`, color: colors[2]},
+    { word: `creatinina|cr`, color: colors[2]},
+    { word: `hemoglobina|hb`, color: colors[2]},
+    { word: `hematocrito|hcto`, color: colors[2]},
+    { word: `leucocitos|leucos|lc`, color: colors[2]},
+    { word: `mg:|magnesio`, color: colors[2]},
+    { word: `neutrofilo`, color: colors[2]},
+    { word: `potasio|k`, color: colors[2]},
+    { word: `plaquetas|plt|plts`, color: colors[2]},
+    { word: `sodio|na:`, color: colors[2]},
+    { word: `vsg`, color: colors[2]},
 
     //Verde
     { word: `aceptables condiciones`, color: colors[3]},
+    { word: `frecuencia cardíaca|fc`, color: colors[3]}, 
+    { word: `frecuencia respiratoria|fr`, color: colors[3]}, 
+    { word: `pa |pa:|presi[oó]n arterial`, color: colors[3]}, 
+    { word: `saturaci[oón]|so2`, color: colors[3]}, 
+    { word: `t:|temperatura`, color: colors[3]}, 
+
+
 
     //Gris
     { word: `\\b((0?[1-9]|[12]\\d|3[01])[\\/\\.-](0?[1-9]|1[0-2])[\\/\\.-](\\d{4}|\\d{2}))(?=\\W|$)`, color: colors[4]}
