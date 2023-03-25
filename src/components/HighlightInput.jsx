@@ -6,8 +6,8 @@ function HighlightInput() {
 
   const colors = [
     "#44e2f798",
-    "#f1ff73",
-    "#f8567fcc",
+    "#fcf826",
+    "#ff7b008a",
     "#73ff9d",
     "#6c757d7a"
   ]
@@ -29,18 +29,19 @@ function HighlightInput() {
     { word: `objetivo`, color: colors[0] },
     { word: `paracl[ií]nico`, color: colors[0]},
     { word: `plan`, color: colors[0]},
-    { word: `s:|s/|s/:|subjetivo`, color: colors[0]},
     { word: `tratamiento(s)?|tto`, color: colors[0]},
     
     
     //Amarillo
     { word: `hba1c|hemoglobina glicada|hemoglobina glicosilada`, color: colors[1]},
     { word: `tsh`, color: colors[1]},    
+    { word: `ipa`, color: colors[1]},    
     
-    //Pink
+    //Orange
     { word: `bun`, color: colors[2]},
     { word: `ca |ca:|calcio`, color: colors[2]},
     { word: `cl |cl:|cloro`, color: colors[2]},
+    { word: `colesterol`, color: colors[2]},
     { word: `creatinina|cr`, color: colors[2]},
     { word: `hemoglobina|hb`, color: colors[2]},
     { word: `hematocrito|hcto`, color: colors[2]},
@@ -50,6 +51,10 @@ function HighlightInput() {
     { word: `potasio|k`, color: colors[2]},
     { word: `plaquetas|plt|plts`, color: colors[2]},
     { word: `sodio|na:`, color: colors[2]},
+    { word: `tp`, color: colors[2]},
+    { word: `tpt`, color: colors[2]},
+    { word: `triglicerido`, color: colors[2]},
+    { word: `uroanalisis`, color: colors[2]},
     { word: `vsg`, color: colors[2]},
 
     //Verde
