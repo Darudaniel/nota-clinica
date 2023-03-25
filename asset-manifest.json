@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/nota-clinica/static/css/main.66fa5f74.css",
-    "main.js": "/nota-clinica/static/js/main.614dc26b.js",
+    "main.js": "/nota-clinica/static/js/main.51fcf49e.js",
     "static/js/787.e7c45c4f.chunk.js": "/nota-clinica/static/js/787.e7c45c4f.chunk.js",
     "index.html": "/nota-clinica/index.html",
     "main.66fa5f74.css.map": "/nota-clinica/static/css/main.66fa5f74.css.map",
-    "main.614dc26b.js.map": "/nota-clinica/static/js/main.614dc26b.js.map",
+    "main.51fcf49e.js.map": "/nota-clinica/static/js/main.51fcf49e.js.map",
     "787.e7c45c4f.chunk.js.map": "/nota-clinica/static/js/787.e7c45c4f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.66fa5f74.css",
-    "static/js/main.614dc26b.js"
+    "static/js/main.51fcf49e.js"
   ]
 }
