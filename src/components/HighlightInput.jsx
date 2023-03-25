@@ -39,10 +39,9 @@ function HighlightInput() {
     
     //Orange
     { word: `bun`, color: colors[2]},
-    { word: `ca |ca:|calcio`, color: colors[2]},
     { word: `cl |cl:|cloro`, color: colors[2]},
     { word: `colesterol`, color: colors[2]},
-    { word: `creatinina|cr`, color: colors[2]},
+    { word: `creatinina|cr:`, color: colors[2]},
     { word: `hemoglobina|hb`, color: colors[2]},
     { word: `hematocrito|hcto`, color: colors[2]},
     { word: `leucocitos|leucos|lc`, color: colors[2]},
