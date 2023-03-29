@@ -9,7 +9,6 @@ function App() {
         <h1 className='title'>Nota Clínica</h1>
       </header>
         <HighlightInput />
-
     </div>
   );
 }

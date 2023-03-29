@@ -1,7 +1,12 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import '../styles/HighlightInput.css'
 
 function HighlightInput() {
+  const [message, setMessage] =useState('')
+
+  const [result, setResult] = useState('');
+  const [loading, setLoading] = useState(false);
+
   const inputRef = useRef(null);
 
   const colors = [
@@ -84,19 +89,75 @@ function HighlightInput() {
           `<span style="background-color:${color}">${match}</span>`
       );
     });
-    
+    const inputText = inputElement.innerText
+    setMessage(inputText)
     inputElement.innerHTML = inputValue;
     inputElement.focus();
   };
 
+  // const testChat = () => {
+  //   setIsActive(false)
+  //   console.log(message)
+  //   console.log(typeof(message))
+  //   setTimeout(() => {
+  //     setIsActive(true)
+  //   }, 3000);
+  // }
+
+  const sendRequest = async () => {
+
+    setLoading(true); 
+    const myPrompt = `En español ennumera las problematicas especificas de la siguiente nota clinica. por favor no menciones los diagnosticos, los antecedentes personales, el nombre del paciente, ni los medicamentos que toma, a menos que sean de extrema relevancia, y no des una introducción, solo ennumera:${message}`
+
+    const prompt = myPrompt
+
+    try {
+    const response = await fetch('http://localhost:3080/chat', {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ message: prompt }) // Send the object with the 'message' property
+    });
+    const data = await response.json();
+    setResult(data.choices[0].text);
+    setLoading(false);
+    } catch (error) {
+    console.error(error);
+    setLoading(false);
+    }
+    
+    
+
+  }
   return (
-    <div className="HighlightInput">
-      <div
-        ref={inputRef}
-        style={{ whiteSpace: "pre-wrap", display: "inline-block" }}
-        contentEditable
-      />
-      <button onClick={handleHighlight}>Revisar</button>
+    <div className="container">
+      <div className="HighlightInput">
+        <div
+          ref={inputRef}
+          style={{ whiteSpace: "pre-wrap", display: "inline-block" }}
+          contentEditable
+        />
+        <button type="button" onClick={handleHighlight}>Revisar</button>
+      </div>
+      {/* <button type="button" onClick={testChat}>Revisar</button> */}
+
+      <div className='chatbot-container'>
+        <h2 className='chatbot-heading'>Inteligencia Artificial:</h2>
+        {
+          result.length > 0 && 
+          <div id='resultados' className='chatbot-analysis' role='alert'>{result}</div>
+        }
+        <button
+          type='button'
+          className='chatbot-btn btn btn-primary'
+          onClick={sendRequest}
+        >
+          {loading ? "Analizando..." : "Analizar"}
+        </button>
+      </div>
+
+
     </div>
   );
 }
