@@ -83,9 +83,16 @@
     background-color: #0062cc;
   }
   
-  .chatbot-btn:disabled {
+  .chatbot-btn:disabled, .button-blocked {
     background-color: #d3d3d3;
     cursor: not-allowed;
+  }
+
+  .advice {
+    max-width: 70vw;
+    margin: 15px;
+    font-style: italic;
+    color: #6c757d;
   }
   
   

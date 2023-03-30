@@ -6,6 +6,8 @@ function HighlightInput() {
 
   const [result, setResult] = useState('');
   const [loading, setLoading] = useState(false);
+  const [isActive, setIsActive] = useState(false);
+  const [buttonBlock, setButtonBlock] = useState(false);
 
   const inputRef = useRef(null);
 
@@ -76,6 +78,13 @@ function HighlightInput() {
     //fechas
   ];
 
+  const buttonCooldown = () => {
+    setButtonBlock(true)
+    setTimeout(() => {
+      setButtonBlock(false)
+    }, 600000);
+  }
+
   const handleHighlight = () => {
     const inputElement = inputRef.current;
     let inputValue = inputElement.innerHTML;
@@ -91,18 +100,10 @@ function HighlightInput() {
     });
     const inputText = inputElement.innerText
     setMessage(inputText)
+    setIsActive(true)
     inputElement.innerHTML = inputValue;
     inputElement.focus();
   };
-
-  // const testChat = () => {
-  //   setIsActive(false)
-  //   console.log(message)
-  //   console.log(typeof(message))
-  //   setTimeout(() => {
-  //     setIsActive(true)
-  //   }, 3000);
-  // }
 
   const sendRequest = async () => {
 
@@ -112,7 +113,7 @@ function HighlightInput() {
     const prompt = myPrompt
 
     try {
-    const response = await fetch('http://localhost:3080/chat', {
+    const response = await fetch('https://my-chatbot-dun.vercel.app/api/v1/chat', {
         method: 'POST',
         headers: {
         'Content-Type': 'application/json'
@@ -122,6 +123,7 @@ function HighlightInput() {
     const data = await response.json();
     setResult(data.choices[0].text);
     setLoading(false);
+    buttonCooldown();
     } catch (error) {
     console.error(error);
     setLoading(false);
@@ -140,23 +142,32 @@ function HighlightInput() {
         />
         <button type="button" onClick={handleHighlight}>Revisar</button>
       </div>
-      {/* <button type="button" onClick={testChat}>Revisar</button> */}
+      {
+        isActive? 
+          <div className='chatbot-container'>
+            <h2 className='chatbot-heading'>Inteligencia Artificial:</h2>
+            {
+              result.length > 0 && 
+              <div id='resultados' className='chatbot-analysis' role='alert'>{result}</div>
+            }
+            {
+              buttonBlock?
+              <button type='button' className='chatbot-btn btn btn-primary button-blocked'>Analizar</button>
+              :
+                <button
+                  type='button'
+                  className='chatbot-btn btn btn-primary'
+                  onClick={sendRequest}
+                >
+                  {loading ? "Analizando..." : "Analizar"}
+                </button>
+            }
 
-      <div className='chatbot-container'>
-        <h2 className='chatbot-heading'>Inteligencia Artificial:</h2>
-        {
-          result.length > 0 && 
-          <div id='resultados' className='chatbot-analysis' role='alert'>{result}</div>
-        }
-        <button
-          type='button'
-          className='chatbot-btn btn btn-primary'
-          onClick={sendRequest}
-        >
-          {loading ? "Analizando..." : "Analizar"}
-        </button>
-      </div>
-
+            <p className="advice">Importante: El análisis con inteligencia artificial solo se puede realizar una sola vez, asegúrese de analizar solo la nota clínica definitiva. Si quiere analizar una nueva nota clinica es recomendable recargar la pagina.</p>
+          </div>
+        :
+          <p className="advice">Nota: Solo se puede analizar con IA después de haber revisado la nota clínica.</p>
+      } 
 
     </div>
   );
