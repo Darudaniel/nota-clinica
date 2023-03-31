@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import '../styles/HighlightInput.css'
+import { registerEvent } from '../firebase';
 
 function HighlightInput() {
   const [message, setMessage] =useState('')
@@ -100,6 +101,7 @@ function HighlightInput() {
     });
     const inputText = inputElement.innerText
     setMessage(inputText)
+    registerEvent('review note')
     setIsActive(true)
     inputElement.innerHTML = inputValue;
     inputElement.focus();
@@ -122,6 +124,7 @@ function HighlightInput() {
     });
     const data = await response.json();
     setResult(data.choices[0].text);
+    registerEvent('request to IA')
     setLoading(false);
     buttonCooldown();
     } catch (error) {
@@ -163,7 +166,7 @@ function HighlightInput() {
                 </button>
             }
 
-            <p className="advice">Importante: El análisis con inteligencia artificial solo se puede realizar una sola vez, asegúrese de analizar solo la nota clínica definitiva. Si quiere analizar una nueva nota clinica es recomendable recargar la pagina.</p>
+            <p className="advice">Importante: El análisis con inteligencia artificial solo se puede realizar una sola vez, asegúrese de analizar solo la nota clínica definitiva. Si quiere analizar una nueva nota clinica es recomendable abrir otra pesataña. Tambien podria recargar la pagina pero perderia la nota actual.</p>
           </div>
         :
           <p className="advice">Nota: Solo se puede analizar con IA después de haber revisado la nota clínica.</p>

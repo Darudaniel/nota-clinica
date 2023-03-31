@@ -1,8 +1,8 @@
 import './App.css'
 import HighlightInput from "./components/HighlightInput";
 
-
 function App() {
+
   return (
     <div className="App">
       <header className="App-header">
