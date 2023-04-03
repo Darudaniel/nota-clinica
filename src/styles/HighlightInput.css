@@ -89,6 +89,7 @@
   }
 
   .advice {
+    font-size: small;
     max-width: 70vw;
     margin: 20px;
     font-style: italic;
