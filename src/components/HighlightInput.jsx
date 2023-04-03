@@ -101,7 +101,7 @@ function HighlightInput() {
     });
     const inputText = inputElement.innerText
     setMessage(inputText)
-    registerEvent('review note')
+    registerEvent('review_note')
     setIsActive(true)
     inputElement.innerHTML = inputValue;
     inputElement.focus();
@@ -110,7 +110,17 @@ function HighlightInput() {
   const sendRequest = async () => {
 
     setLoading(true); 
-    const myPrompt = `En español ennumera las problematicas especificas de la siguiente nota clinica. por favor no menciones los diagnosticos, los antecedentes personales, el nombre del paciente, ni los medicamentos que toma, a menos que sean de extrema relevancia, y no des una introducción, solo ennumera:${message}`
+    registerEvent('send_petition')
+    // const myPrompt = `En español ennumera las problematicas especificas de la siguiente nota clinica. por favor no menciones los diagnosticos, los antecedentes personales, el nombre del paciente, ni los medicamentos que toma, a menos que sean de extrema relevancia, y no des una introducción, solo ennumera:${message}`
+    const myPrompt = `Instrucciones: En este prompt se te solicita que ennumeres solo las problemáticas específicas de la siguiente clínica en español, sin repetir partes de la historia. Por favor, no menciones los diagnósticos, antecedentes personales, nombre del paciente o medicamentos que toma, a menos que sean de extrema relevancia.
+    Nota médica: ${message}
+    Procedimiento a seguir:
+    1. Lee cuidadosamente la nota médica proporcionada.
+    2. Identifica todas las problemáticas médicas específicas que se mencionan en la nota, sin hacer referencia a los diagnósticos, antecedentes personales, nombre del paciente o medicamentos que toma.
+    3. Asegúrate de no repetir partes de la historia médica.
+    4. Enumera las problemáticas identificadas en orden numérico, utilizando frases breves y claras en español.
+    5. Asegúrate de seguir estrictamente las instrucciones proporcionadas y de no incluir información innecesaria o no relevante.
+    `
 
     const prompt = myPrompt
 
@@ -124,11 +134,12 @@ function HighlightInput() {
     });
     const data = await response.json();
     setResult(data.choices[0].text);
-    registerEvent('request to IA')
-    setLoading(false);
+    registerEvent('perition_success')
     buttonCooldown();
+    setLoading(false);
     } catch (error) {
     console.error(error);
+    registerEvent('failed_petition')
     setLoading(false);
     }
     
@@ -151,7 +162,9 @@ function HighlightInput() {
             <h2 className='chatbot-heading'>Inteligencia Artificial:</h2>
             {
               result.length > 0 && 
-              <div id='resultados' className='chatbot-analysis' role='alert'>{result}</div>
+              <div id='resultados' className='chatbot-analysis' role='alert'>{result}
+                <p className="advice">El modelo de lenguaje que ha generado este analisis solo tiene informacion anterior a 2021 por lo que puede entregar analisis desactualizados. Este analisis generado por IA se ofrece unicamente para fines educativos y no reemplaza el juicio de un profesional medico certificado. El proposito de esta información NO es sustituir el criterio clinico de ningun modo.</p>
+              </div>
             }
             {
               buttonBlock?
