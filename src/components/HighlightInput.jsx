@@ -1,11 +1,12 @@
 import { useRef, useState } from "react";
 import '../styles/HighlightInput.css'
-import { registerEvent } from '../firebase';
+import { signWithGoogle, logout, registerEvent } from '../firebase';
 
 function HighlightInput() {
-  const [message, setMessage] =useState('')
-
+  const [message, setMessage] = useState('')
   const [result, setResult] = useState('');
+  const [name, setName] = useState({})
+  const [isLogged, setIsLogged] = useState(false)
   const [loading, setLoading] = useState(false);
   const [isActive, setIsActive] = useState(false);
   const [buttonBlock, setButtonBlock] = useState(false);
@@ -107,6 +108,24 @@ function HighlightInput() {
     inputElement.focus();
   };
 
+
+  const tryLogin = async () => {
+    try {
+      signWithGoogle()
+    } catch(error) {
+      console.error(error)
+    }
+  }
+
+  const tryLogout = async () => {
+    try {
+      await logout()
+      setIsLogged(false)
+    } catch(error) {
+      console.error(error)
+    }
+  }
+
   const sendRequest = async () => {
 
     setLoading(true); 
@@ -167,23 +186,53 @@ function HighlightInput() {
               </div>
             }
             {
-              buttonBlock?
-              <button type='button' className='chatbot-btn btn btn-primary button-blocked'>Analizar</button>
+              isLogged?
+                <div className="button-log-container">
+                  {
+                    buttonBlock?
+                     <button type='button' className='chatbot-btn btn btn-primary button-blocked'>Analizar</button>
+                    :
+                     <button
+                        type='button'
+                        className='chatbot-btn btn btn-primary'
+                        onClick={sendRequest}
+                      >
+                        {loading ? "Analizando..." : "Analizar"}
+                      </button>
+                  }
+                </div>
               :
-                <button
-                  type='button'
-                  className='chatbot-btn btn btn-primary'
-                  onClick={sendRequest}
-                >
-                  {loading ? "Analizando..." : "Analizar"}
-                </button>
+                <div className="button-log-container">
+                  <p className="advice">Debes autenticarte para tener acceso al analisis con inteligencia artificial.</p>
+                  <button
+                    type='button'
+                    className='chatbot-btn btn btn-primary'
+                    onClick={tryLogin}
+                  >
+                    Iniciar Sesion
+                  </button>
+                </div>
+
             }
+            
 
             <p className="advice">Importante: El análisis con inteligencia artificial solo se puede realizar una sola vez, asegúrese de analizar solo la nota clínica definitiva. Si quiere analizar una nueva nota clinica es recomendable abrir otra pesataña. Tambien podria recargar la pagina pero perderia la nota actual.</p>
           </div>
         :
           <p className="advice">Nota: Solo se puede analizar con IA después de haber revisado la nota clínica.</p>
       } 
+      {
+        isLogged?
+          <button
+            type='button'
+            className='chatbot-btn btn btn-primary'
+            onClick={tryLogout}
+          >
+            Cerrar Sesion
+          </button>
+        :
+          <div>{localStorage.getItem("name")}</div>
+      }
 
     </div>
   );
