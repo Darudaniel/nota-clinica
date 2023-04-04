@@ -23,10 +23,9 @@ export const signWithGoogle = () => {
       const name = user.displayName
       const email = user.email
       
-      localStorage.setItem("name", name)
-      localStorage.setItem("email", email)
+      localStorage.setItem("login", 'Estas autenticado')
       
-      console.log('You are logged')
+      console.log('Autenticado con exito')
       // IdP data available using getAdditionalUserInfo(result)
       // ...
     }).catch((error) => {
@@ -44,6 +43,8 @@ export const signWithGoogle = () => {
 export const logout = async () => {
   try {
     await signOut(auth)
+    localStorage.setItem("login", '')
+    console.log('Cerraste sesion')
   } catch (error) {
     console.error("Error signing in with Google:", error);
   }

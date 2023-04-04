@@ -1,11 +1,10 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import '../styles/HighlightInput.css'
 import { signWithGoogle, logout, registerEvent } from '../firebase';
 
 function HighlightInput() {
   const [message, setMessage] = useState('')
   const [result, setResult] = useState('');
-  const [name, setName] = useState({})
   const [isLogged, setIsLogged] = useState(false)
   const [loading, setLoading] = useState(false);
   const [isActive, setIsActive] = useState(false);
@@ -181,11 +180,42 @@ function HighlightInput() {
             <h2 className='chatbot-heading'>Inteligencia Artificial:</h2>
             {
               result.length > 0 && 
-              <div id='resultados' className='chatbot-analysis' role='alert'>{result}
+              <div id='resultados' className='chatbot-analysis' role='alert'>
+                {result}
                 <p className="advice">El modelo de lenguaje que ha generado este analisis solo tiene informacion anterior a 2021 por lo que puede entregar analisis desactualizados. Este analisis generado por IA se ofrece unicamente para fines educativos y no reemplaza el juicio de un profesional medico certificado. El proposito de esta información NO es sustituir el criterio clinico de ningun modo.</p>
               </div>
             }
-            {
+            <div className="button-log-container">
+                  {
+                    buttonBlock?
+                     <button type='button' className='chatbot-btn btn btn-primary button-blocked'>Analizar</button>
+                    :
+                     <button
+                        type='button'
+                        className='chatbot-btn btn btn-primary'
+                        onClick={sendRequest}
+                      >
+                        {loading ? "Analizando..." : "Analizar"}
+                      </button>
+                  }
+                </div>
+            <p className="advice">Debes autenticarte para tener acceso al analisis con inteligencia artificial.</p>
+            <button
+              type='button'
+              className='chatbot-btn btn btn-primary'
+              onClick={tryLogin}
+            >
+              Iniciar Sesion
+            </button>
+            {localStorage.getItem("login")}
+            <button
+              type='button'
+              className='chatbot-btn btn btn-primary'
+              onClick={tryLogout}
+            >
+              Cerrar Sesion
+            </button>
+            {/* {
               isLogged?
                 <div className="button-log-container">
                   {
@@ -213,7 +243,7 @@ function HighlightInput() {
                   </button>
                 </div>
 
-            }
+            } */}
             
 
             <p className="advice">Importante: El análisis con inteligencia artificial solo se puede realizar una sola vez, asegúrese de analizar solo la nota clínica definitiva. Si quiere analizar una nueva nota clinica es recomendable abrir otra pesataña. Tambien podria recargar la pagina pero perderia la nota actual.</p>
@@ -221,18 +251,21 @@ function HighlightInput() {
         :
           <p className="advice">Nota: Solo se puede analizar con IA después de haber revisado la nota clínica.</p>
       } 
-      {
+      {/* {
         isLogged?
-          <button
-            type='button'
-            className='chatbot-btn btn btn-primary'
-            onClick={tryLogout}
-          >
-            Cerrar Sesion
-          </button>
+          <div className="button-log-container" >
+            <button
+              type='button'
+              className='chatbot-btn btn btn-primary'
+              onClick={tryLogout}
+            >
+              Cerrar Sesion
+            </button>
+            <div>{}</div>
+          </div>
         :
-          <div>{localStorage.getItem("name")}</div>
-      }
+          <div>{isLogged}</div>
+      } */}
 
     </div>
   );
