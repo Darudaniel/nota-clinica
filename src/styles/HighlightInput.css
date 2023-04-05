@@ -20,6 +20,8 @@
 
 .HighlightInput button, .chatbot-btn {
   width: 25%;
+  min-width: 100px;
+  max-width: 2000px;
   display: flex;
   justify-content: center;
   background-color: #73a4ff;
@@ -44,6 +46,7 @@
 @media only screen and (max-width: 720px) {
   .HighlightInput input, .HighlightInput div {
     font-size: medium;
+
   }
 }
 
@@ -55,13 +58,12 @@
   display: flex;
   flex-direction: column;
   align-items: left;
-  padding: 1rem;
   border: none;
   border-radius: 0.5rem;
 }
 
 .chatbot-heading {
-  margin-bottom: 1rem;
+  margin: 20px 0;
   font-size: 2rem;
   font-weight: bold;
   color: #333;
@@ -77,6 +79,10 @@
   text-align: left;
   font-size: 1.2rem;
   color: #333;
+}
+
+.chatbot-btn {
+  min-width: 100px;
 }
 
 .chatbot-btn:hover {

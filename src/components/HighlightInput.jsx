@@ -200,7 +200,6 @@ function HighlightInput() {
               result.length > 0 && 
               <div id='resultados' className='chatbot-analysis' role='alert'>
                 {result}
-                <p className="advice">El modelo de lenguaje que ha generado este analisis solo tiene informacion anterior a 2021 por lo que puede entregar analisis desactualizados. Este analisis generado por IA se ofrece unicamente para fines educativos y no reemplaza el juicio de un profesional medico certificado. El proposito de esta información NO es sustituir el criterio clinico de ningun modo.</p>
               </div>
             }
             {
@@ -218,10 +217,11 @@ function HighlightInput() {
                         {loading ? "Analizando..." : "Analizar"}
                       </button>
                   }
+                  <p className="advice">Importante: El análisis generado por IA es solo para fines educativos y no debe reemplazar el juicio de un médico certificado. La información puede estar desactualizada ya que el modelo solo tiene información hasta 2021.</p>
                 </div>
               :
                 <div className="button-log-container">
-                  <p className="advice">Debes iniciar sesion con google para tener acceso al analisis con inteligencia artificial.</p>
+                  <p className="advice">Para tener acceso al analisis con inteligencia artificial, inicia sesion con google.</p>
                   <button
                     type='button'
                     className='chatbot-btn btn btn-primary'
@@ -231,10 +231,7 @@ function HighlightInput() {
                   </button>
                 </div>
 
-            }
-            
-
-            <p className="advice">Importante: El análisis con inteligencia artificial solo se puede realizar una sola vez, asegúrese de analizar solo la nota clínica definitiva. Si quiere analizar una nueva nota clinica es recomendable abrir otra pesataña. Tambien podria recargar la pagina pero perderia la nota actual.</p>
+            }            
           </div>
         :
           <p className="advice">Nota: Solo se puede analizar con IA después de haber revisado la nota clínica.</p>
