@@ -222,13 +222,13 @@ function HighlightInput() {
               :
                 <div className="button-log-container">
                   <p className="advice">Para tener acceso al analisis con inteligencia artificial, inicia sesion con google.</p>
-                  <button
-                    type='button'
-                    className='chatbot-btn btn btn-primary'
-                    onClick={tryLogin}
-                  >
-                    Iniciar Sesion
-                  </button>
+                    <button
+                      type='button'
+                      className='chatbot-btn btn btn-primary'
+                      onClick={tryLogin}
+                    >
+                      Acceder con google
+                    </button>
                 </div>
 
             }            
