@@ -3,6 +3,7 @@ import '../styles/HighlightInput.css'
 import { signWithGoogle, logout, registerEvent } from '../firebase';
 import { useAuth } from "../context/AuthContext";
 import wordsAndColors from "../files/wordsAndColors";
+import Terms from './Terms'
 
 function HighlightInput() {
   const [message, setMessage] = useState('')
@@ -176,7 +177,7 @@ function HighlightInput() {
         :
           <div>{isLogged}</div>
       }
-
+      <Terms />
     </div>
   );
 }
