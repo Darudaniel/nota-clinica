@@ -77,22 +77,23 @@ function HighlightInput() {
     const prompt = myPrompt
 
     try {
-    const response = await fetch('https://my-chatbot-dun.vercel.app/api/v1/chat', {
-        method: 'POST',
-        headers: {
-        'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ message: prompt }) // Send the object with the 'message' property
-    });
-    const data = await response.json();
-    setResult(data.choices[0].text);
-    registerEvent('perition_success')
-    buttonCooldown();
-    setLoading(false);
+      // const response = await fetch('http://localhost:3080/api/v1/chat', {
+      const response = await fetch('https://my-chatbot-dun.vercel.app/api/v1/chat', {
+          method: 'POST',
+          headers: {
+          'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ message: prompt }) // Send the object with the 'message' property
+      });
+      const data = await response.json();
+      setResult(data.choices[0].text);
+      registerEvent('perition_success')
+      buttonCooldown();
+      setLoading(false);
     } catch (error) {
-    console.error(error);
-    registerEvent('failed_petition')
-    setLoading(false);
+      console.error(error);
+      registerEvent('failed_petition')
+      setLoading(false);
     }
   }
 
