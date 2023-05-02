@@ -1,0 +1,12 @@
+.legal-button {
+  padding: 10px;
+  font-size: large;
+}
+
+.legal-text {
+  font-size: medium;
+  max-width: 65vw;
+  text-align: justify;
+  margin: 20px 0;
+  font-style: italic;
+}

@@ -1,8 +1,10 @@
+import '../styles/Terms.css'
+
 const Terms = () => {
   return(
     <div>
       <h2>Terminos y condiciones</h2>
-      <p className="advice">
+      <p className="terms-text">
         Los usuarios de Notaclinica.com aceptan que queda prohibido el uso de historias clínicas reales en la plataforma. El compartir información médica confidencial con terceros es ilegal y está prohibido.
         Se recomienda el uso exclusivo de casos clínicos ficticios en Notaclinica.com. Estos casos no deberán contener ningún tipo de información que permita identificar a un paciente, incluyendo nombres, números de identificación, datos sensibles como la dirección, datos de contacto, o cualquier información que permita su identificación.
         <br />
